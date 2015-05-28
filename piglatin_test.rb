@@ -37,11 +37,21 @@ class PiglatinTest < Minitest::Test
     assert_equal "ombatcay omplainscay", combat_complains.translate
   end
 
-  def test_if_capitalization_maters
+  def test_if_capitalization_matters
     the_resemblance_mutters = Piglatin.new("The Resemblance Mutters")
     assert_equal "Ethay Esemblanceray Uttersmay", the_resemblance_mutters.translate
   end
 
+  def test_if_numbers_matter
+    dangerous_facts_electricians_keep_to_themselves = Piglatin.new("15 Dangerous Facts Electricians Keep To Themselves")
+    assert_equal "15 Angerousday Actsfay Electriciansyay Eepkay Otay Emselvesthay", dangerous_facts_electricians_keep_to_themselves.translate
+  end
+
+  def test_if_punctuation_matters
+    the_unpopular_glory_renames_an_ice = Piglatin.new("The unpopular glory renames an ice!")
+    assert_equal "Ethay unpopularyay oryglay enamesray anyay iceyay!", the_unpopular_glory_renames_an_ice.translate 
+  end
+  
   def self.test_order
     :alpha
   end

@@ -11,9 +11,18 @@ class Piglatin
   end
 
   def translate_word(word)
+    punct = word =~ /[.'!?;:]$/
+    num = word =~ /^[0-9]/
     caps = word =~ /^[A-Z]/
     word.downcase!
-    if %w(a e i o u).include?(word[0])
+    if punct
+      end_mark = word.last
+      word.chop
+    end
+
+    if num
+      new_word = word
+    elsif %w(a e i o u).include?(word[0])
       new_word = word + "yay"
     else
       vowel_index = /[aeiou]/ =~ word
@@ -24,8 +33,12 @@ class Piglatin
       new_word[0] = new_word[0].upcase
     end
 
-    new_word
-  end
+    # if num
+    #   new_word.insert(-1, end_mark)
+    # end
+    
+  #   new_word
+  # end
 
   # def first_letter
   #   @word[0]
