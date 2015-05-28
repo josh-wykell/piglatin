@@ -11,13 +11,13 @@ class Piglatin
   end
 
   def translate_word(word)
-    punct = word =~ /[.'!?;:]$/
+    punct = word =~ /[^\w\s\d]/
     num = word =~ /^[0-9]/
     caps = word =~ /^[A-Z]/
     word.downcase!
     if punct
-      end_mark = word.last
-      word.chop
+      end_mark = word[-1]
+      word.gsub!(/[^\w\s\d]/, '')
     end
 
     if num
@@ -33,12 +33,12 @@ class Piglatin
       new_word[0] = new_word[0].upcase
     end
 
-    # if num
-    #   new_word.insert(-1, end_mark)
-    # end
-    
-  #   new_word
-  # end
+    if punct
+      new_word.insert(-1, end_mark).split
+    end
+
+    new_word
+  end
 
   # def first_letter
   #   @word[0]
